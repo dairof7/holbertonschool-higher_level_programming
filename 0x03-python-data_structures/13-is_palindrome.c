@@ -8,7 +8,7 @@ int is_palindrome(listint_t **head)
 {
 	listint_t *list;
 	int i = 0, j = 0, len = 0, palindome = 1;
-	int p[1000];
+	int p[10000000];
 
 	list = *head;
 	if (*head == NULL || list->next == NULL)
