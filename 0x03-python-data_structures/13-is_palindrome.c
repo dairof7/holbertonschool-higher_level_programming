@@ -8,14 +8,13 @@ int is_palindrome(listint_t **head)
 {
 	listint_t *list;
 	int i = 0, j = 0, len = 0, palindome = 1;
+	int p[1000];
 
 	list = *head;
 	if (*head == NULL || list->next == NULL)
-		return (1);
+		return (palindome);
 	while (list != NULL)
 		len++, list = list->next;
-	int p[len / 2];
-
 	list = *head;
 	if (len % 2 == 0)
 	{
@@ -35,7 +34,7 @@ int is_palindrome(listint_t **head)
 			list = list->next, i++;
 		}
 	}
-list = *head, i = 0;
+	list = *head, i = 0;
 	while (i <= len / 2 - 1)
 	{
 		if (list->n != p[len / 2 - 1 - i])
