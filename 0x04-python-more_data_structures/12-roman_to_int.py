@@ -21,7 +21,7 @@ def roman_to_int(roman_string):
         if "IX" in roman_string:
             suma -= 2
         if "IV" in roman_string:
-            suma -= 20
+            suma -= 2
         return suma
     else:
         return 0
