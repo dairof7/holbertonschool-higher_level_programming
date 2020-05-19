@@ -9,4 +9,4 @@ class Square:
         Arg
             size: size to initializate __size
         """
-        self.__Square__size = size
+        self.__size = size
