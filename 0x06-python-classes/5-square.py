@@ -24,6 +24,18 @@ class Square:
         """
         return self.__size ** 2
 
+    def my_print(self):
+        """
+        Print the square
+        """
+        if self.size == 0:
+            print("")
+        else:
+            for i in range(self.size):
+                for i in range(self.size):
+                    print("#", end="")
+                print("")
+
     @property
     def size(self):
         """
