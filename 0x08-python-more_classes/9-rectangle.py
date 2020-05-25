@@ -96,7 +96,7 @@ class Rectangle:
         else:
             for j in range(self.__height):
                 for i in range(self.__width):
-                    string += "#"
+                    string += str(self.print_symbol)
                 if j < self.__height - 1:
                     string += "\n"
         return string
