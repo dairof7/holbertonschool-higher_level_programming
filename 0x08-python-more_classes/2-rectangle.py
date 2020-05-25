@@ -4,7 +4,6 @@
 
 class Rectangle:
     """ Class Rectangle with constuctor and other methods"""
-    pass
 
     def __init__(self, width=0, height=0):
         """Initializes the class Rectangle
@@ -22,7 +21,7 @@ class Rectangle:
         Returns:
             width of the Rectangle
         """
-        return self.width
+        return self.__width
 
     @width.setter
     def width(self, value):
@@ -45,7 +44,7 @@ class Rectangle:
         Returns:
             height of the Rectangle
         """
-        return self.height
+        return self.__height
 
     @height.setter
     def height(self, value):

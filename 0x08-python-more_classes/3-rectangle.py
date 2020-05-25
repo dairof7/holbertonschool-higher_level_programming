@@ -4,7 +4,6 @@
 
 class Rectangle:
     """ Class Rectangle with constuctor and other methods"""
-    pass
 
     def __init__(self, width=0, height=0):
         """Initializes the class Rectangle
