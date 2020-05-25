@@ -102,19 +102,16 @@ class Rectangle:
         return string
 
     def __repr__(self):
-        """
-        Returns the string representation of the class instance for
-        recreation
-        """
-
-        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
+        """Create the string of the rectangle
+        Returns:
+        The string of the rectangle"""
+        return "Rectangle({:s}, {:s})". \
+            format(str(self.__width), str(self.__height))
 
     def __del__(self):
-        """
-        Final process when an instance is killed
-        """
-        print("Bye rectangle...")
+        """delete a instance"""
         Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
@@ -132,4 +129,5 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
+        """create a new instance with a rectangle"""
         return cls(size, size)
