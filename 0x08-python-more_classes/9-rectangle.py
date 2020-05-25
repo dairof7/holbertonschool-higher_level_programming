@@ -131,5 +131,5 @@ class Rectangle:
     def square(cls, size=0):
         """create a new instance with a rectangle
         """
-        new = Rectangle(size, size)
+        new = cls(size, size)
         return new
