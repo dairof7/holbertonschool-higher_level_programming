@@ -16,8 +16,8 @@ class Rectangle:
             width: width of the rectangle
             height: height of the retangle
         """
-        self.height = height
         self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     @property
@@ -102,30 +102,34 @@ class Rectangle:
         return string
 
     def __repr__(self):
-        """Create the string of the rectangle
-        Returns:
-        The string of the rectangle"""
+        """
+        Returns the string representation of the class instance for
+        recreation
+        """
+
         return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
     def __del__(self):
-        """delete a instance"""
-        Rectangle.number_of_instances -= 1
+        """
+        Final process when an instance is killed
+        """
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
-        """verify which one is bigger"""
-        if not isinstance(rect_1, Rectangle):
+        """
+        Returns the bigger rectangle
+        """
+        if type(rect_1) != Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
-        if not isinstance(rect_2, Rectangle):
+        if type(rect_2) != Rectangle:
             raise TypeError("rect_2 must be an instance of Rectangle")
-
-        if rect_1.area() < rect_2.area():
+        if rect_2.area() > rect_1.area():
             return rect_2
         else:
             return rect_1
 
     @classmethod
     def square(cls, size=0):
-        """create a new instance with a rectangle"""
         return cls(size, size)
