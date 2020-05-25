@@ -99,5 +99,5 @@ class Rectangle:
         """Create the string of the rectangle
         Returns:
         The string of the rectangle"""
-        return "Rectangle({:s},{:s})". \
+        return "Rectangle({:s}, {:s})". \
             format(str(self.__width), str(self.__height))
