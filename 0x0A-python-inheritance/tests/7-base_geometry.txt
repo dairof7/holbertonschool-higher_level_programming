@@ -47,3 +47,9 @@ This is an example text file in reStructuredText format.  First import
     >>> t.integer_validator("my_int", [5, 6])
     Traceback (most recent call last):
     TypeError: my_int must be an integer
+
+
+    >>> t.integer_validator("Juan", 89)
+    >>> t.integer_validator("Betty", "Holberton")
+    Traceback (most recent call last):
+    TypeError: Betty must be an integer
