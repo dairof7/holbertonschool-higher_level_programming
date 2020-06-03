@@ -8,6 +8,6 @@ import json
 def load_from_json_file(filename):
     """from_json_string Class
     creates an Object from a “JSON file
-    Return: # of characteres""""
-    with open(filename, 'r', encoding='utf-8') as f:
+    Return: # of characteres"""
+    with open(filename, 'r') as f:
         return json.load(f)
