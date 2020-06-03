@@ -6,9 +6,10 @@ def read_lines(filename="", nb_lines=0):
     """read_lines Class
     Print: lines of a file"""
     with open(filename, 'r', encoding='utf-8') as f:
+        i = len(open(filename).readlines())
         if nb_lines <= 0:
-            for i, line in enumerate(f):
-                print(line, end="")
+            for i in range(i):
+                print(f.readline(), end="")
             print("")
         else:
             for i in range(nb_lines):
