@@ -7,6 +7,6 @@ def number_of_lines(filename=""):
     Return: number if lines of a file"""
     i = 0
     with open(filename, 'r', encoding='utf-8') as f:
-        for i, line in enumerate(f):
-            pass
-    return i + 1
+        for line in enumerate(f):
+            i += 1
+    return i
