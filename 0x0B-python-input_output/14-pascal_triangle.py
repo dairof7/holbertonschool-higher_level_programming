@@ -14,6 +14,8 @@ def pascal_triangle(n):
     lista = [1, 1]
     new = []
     fin = [[1], [1, 1]]
+    if n <= 0:
+        return []
     if n == 1:
         return [1]
     elif n == 2:
