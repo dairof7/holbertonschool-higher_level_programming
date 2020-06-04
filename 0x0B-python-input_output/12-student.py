@@ -24,7 +24,7 @@ class Student():
         """
         dictionary = self.__dict__
         new_dict = {}
-        if attrs is None or attrs == []:
+        if attrs is None:
             return self.__dict__
         for key in attrs:
             if type(key) is not str:
