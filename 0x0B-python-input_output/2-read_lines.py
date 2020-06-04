@@ -11,8 +11,8 @@ def read_lines(filename="", nb_lines=0):
             i += 1
         f.seek(0)
         if nb_lines <= 0 or nb_lines > i:
-            read_data = f.read()
-            print(read_data)
+            for line in f:
+                print(line, end="")
         else:
             for i in range(nb_lines):
                 print(f.readline(), end="")
