@@ -15,13 +15,13 @@ def pascal_triangle(n):
     new = []
     fin = [[1], [1, 1]]
     if n <= 0:
-        return []
+        return new
     if n == 1:
-        return [1]
+        return [[1]]
     elif n == 2:
         return [[1], [1, 1]]
     else:
-        for i in range(3, n+1):
+        for i in range(3, n + 1):
             new.append(1)
             for j in range(len(lista) - 1):
                 new.append(lista[j] + lista[j + 1])
