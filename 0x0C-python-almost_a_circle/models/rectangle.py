@@ -73,22 +73,22 @@ class Rectangle(Base):
         self.__y = y
 
     def area(self):
-        """
-        Area of the rectangle
-        Returns:
-            [int]: area
-        """
+        """Calculate area"""
         return self.__width * self.__height
 
     def display(self):
         """
-        Print rectangle
+        Print the square checking position
         """
-        for i in range(self.__y):
-            print()
-        for i in range(self.__height):
-            print(" " * self.__x, end="")
-            print("#" * self.__width)
+        if self.__width == 0 and self.__height == 0:
+            print("")
+        else:
+            print("\n" * self.__y, end="")
+            for i in range(self.__height):
+                print(" " * self.__x, end="")
+                for j in range(self.__width):
+                    print("#", end="")
+                print("")
 
     def __str__(self):
         """
@@ -104,25 +104,19 @@ class Rectangle(Base):
         return string
 
     def update(self, *args, **kwargs):
-        """
-        Assigns an argument
-        """
-        if args:
-            list_args = ["id", "width", "height", "x", "y"]
-            for i, j in zip(args, list_args):
-                setattr(self, j, i)
+        """update attributes"""
+        if args is not () and args is not None:
+            listname = ["id", "width", "height", "x", "y"]
+            for i, value in enumerate(args):
+                setattr(self, listname[i], value)
         else:
-            for key, value in kwargs.items():
-                if hasattr(self, key):
-                    setattr(self, key, value)
+            for name, value in kwargs.items():
+                if hasattr(self, name):
+                    setattr(self, name, value)
 
     def to_dictionary(self):
-        """
-        dictionary representation of a Rectangle
-        Returns:
-            [dict]: [representation of a rectangle]
-        """
-        dictionary = {}
-        for key, values in self.__dict__.items():  # in var(self).items()
-            dictionary[key.split("__")[-1]] = values
-        return dictionary
+        """Dictionary"""
+        new_dictionary = {}
+        for key, value in self.__dict__.items():
+            new_dictionary[key.split("__")[-1]] = value
+        return new_dictionary
