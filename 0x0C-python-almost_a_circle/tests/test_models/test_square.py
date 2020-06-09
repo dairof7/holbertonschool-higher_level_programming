@@ -192,32 +192,42 @@ class TestSquare(unittest.TestCase):
         s1.update(hi=3)
         self.assertEqual(hasattr(s1, 'hi'), False)
 
-    def test_11(self):
-        """Test 16 to_dictionary method"""
-        s1 = Square(4)
-        s_dict = {'x': 0, 'size': 4, 'y': 0, 'id': 1}
-        self.assertDictEqual(s1.to_dictionary(), s_dict)
-        self.assertEqual(s1.to_dictionary() is s_dict, False)
-        s2 = Square(4, 5)
-        s_dict = {'x': 5, 'size': 4, 'y': 0, 'id': 2}
-        self.assertDictEqual(s2.to_dictionary(), s_dict)
-        self.assertEqual(s2.to_dictionary() is s_dict, False)
-        s3 = Square(4, 5, 7)
-        s_dict = {'x': 5, 'size': 4, 'y': 7, 'id': 3}
-        self.assertDictEqual(s3.to_dictionary(), s_dict)
-        self.assertEqual(s3.to_dictionary() is s_dict, False)
-        s4 = Square(4, 5, 7, 9)
-        s_dict = {'x': 5, 'size': 4, 'y': 7, 'id': 9}
-        self.assertDictEqual(s4.to_dictionary(), s_dict)
-        self.assertEqual(s4.to_dictionary() is s_dict, False)
-
-    def test_12(self):
-        """Test - to_json_string"""
-        s1 = Square(2, 6, 2)
-        dictionary = s1.to_dictionary()
-        json_d = Base.to_json_string([dictionary])
-        self.assertEqual(type(json_d), str)
-        self.assertDictEqual(dictionary, {'id': 1, 'x': 6, 'y': 2, 'size': 2})
+    def test_10(self):
+        """Test mod atribute by assignment"""
+        s1 = Square(12)
+        self.assertEqual(s1.size, 12)
+        s1.size = 25
+        self.assertEqual(s1.size, 25)
+        with self.assertRaises(TypeError) as err:
+            s1.size = "asdasd"
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
+        with self.assertRaises(TypeError) as err:
+            s1.size = [44, 56]
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
+        with self.assertRaises(TypeError) as err:
+            s1.size = True
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
+        with self.assertRaises(TypeError) as err:
+            s1.size = {"aasd": 5}
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
+        with self.assertRaises(TypeError) as err:
+            s1.size = {1, 2}
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
+        with self.assertRaises(TypeError) as err:
+            s1.size = (5,)
+        self.assertEqual(
+            "width must be an integer",
+            str(err.exception))
 
     def test_13(self):
         """Test - save_to_file method"""
