@@ -29,15 +29,3 @@ class Test_Base(unittest.TestCase):
         self.assertEqual(b1.id, -7)
         self.assertEqual(b2.id, 1)
         self.assertEqual(b3.id, 2)
-
-
-class TestBasepep8(unittest.TestCase):
-    """Validate pep8"""
-
-    def test_pep8(self):
-        """test for base file and test_base file pep8"""
-        style = pep8.StyleGuide(quiet=True)
-        base = "models/base.py"
-        test_base = "tests/test_models/test_base.py"
-        result = style.check_files([base, test_base])
-        self.assertEqual(result.total_errors, 0)
