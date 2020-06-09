@@ -248,6 +248,37 @@ class TestSquare(unittest.TestCase):
         self.assertDictEqual(s4.to_dictionary(), s_dict)
         self.assertEqual(s4.to_dictionary() is s_dict, False)
 
+    def test_12(self):
+        """Test - to_json_string"""
+        s1 = Square(2, 6, 2)
+        dictionary = s1.to_dictionary()
+        json_d = Base.to_json_string([dictionary])
+        self.assertEqual(type(json_d), str)
+        self.assertDictEqual(dictionary, {'id': 1, 'x': 6, 'y': 2, 'size': 2})
+
+    def test_13(self):
+        """Test - save_to_file method"""
+        s1 = Square(2, 6, 2)
+        s2 = Square(2, 4, 3, 6)
+        Square.save_to_file([s1, s2])
+        res = '[{"x": 6, "y": 2, "size": 2, "id": 1},' + \
+            ' {"x": 4, "y": 3, "size": 2, "id": 6}]'
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), len(res))
+
+    def test_14(self):
+        """Test - save_to_file - load_from_file method"""
+        s1 = Square(2, 6, 2)
+        Square.save_to_file([s1])
+        datafromfile = Square.load_from_file()
+        res = '[{"x": 6, "y": 2, "size": 2, "id": 1}]'
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), len(res))
+        string = ""
+        for data in datafromfile:
+            string += str(data)
+        self.assertEqual(string, "[Square] (1) 6/2 - 2")
+
     def test_15(self):
         """Test 20 load void"""
         sl = Square.load_from_file()
@@ -279,3 +310,32 @@ class TestSquare(unittest.TestCase):
         self.assertIsInstance(s1, Base)
         self.assertIsInstance(s1, Square)
         self.assertIsInstance(s1, Rectangle)
+
+
+class TestBasepep8(unittest.TestCase):
+    """Validate pep8"""
+
+    def test_pep8(self):
+        """test for base file and test_base file pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        base = "models/base.py"
+        test_base = "tests/test_models/test_base.py"
+        result = style.check_files([base, test_base])
+        self.assertEqual(result.total_errors, 0)
+
+
+class TestDocs(unittest.TestCase):
+    """test docstrings for base and test_base files"""
+
+    def test_module(self):
+        """check module docstrings"""
+        self.assertTrue(len(base.__doc__) > 0)
+
+    def test_class(self):
+        """check class docstrings"""
+        self.assertTrue(len(Base.__doc__) > 0)
+
+    def test_method(self):
+        """check method docstrings"""
+        for func in dir(Base):
+            self.assertTrue(len(func.__doc__) > 0)
