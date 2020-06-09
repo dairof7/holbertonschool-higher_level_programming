@@ -439,36 +439,27 @@ class TestRectangle(unittest.TestCase):
         o = "#\n"
         self.assertEqual(s, o)
 
-    def test_update_method(self):
-        """test_update_method to test update instance method"""
+    def test_display_method(self):
+        """test_display_method method to test output
+        of area method for rectangle instances"""
         Base._Base__nb_objects = 0
-        Rec_up = Rectangle(3, 2, 4, 5)
-        # testing *args
-        Rec_up.update(3)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 3/2")
-        Rec_up.update(3, 4)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 4/2")
-        Rec_up.update(3, 4, 5)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 4/5")
-        Rec_up.update(3, 4, 5, 6)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 6/5 - 4/5")
-        Rec_up.update(3, 4, 5, 6, 7)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 6/7 - 4/5")
-        # testing **kwargs
-        Rec_up.update(id=12)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 4/5")
-        Rec_up.update(id=12, width=3)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 3/5")
-        Rec_up.update(id=12, width=3, height=8)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 3/8")
-        Rec_up.update(id=12, width=3, height=8, x=2)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 2/7 - 3/8")
-        Rec_up.update(id=12, width=3, height=8, x=2, y=9)
-        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 2/9 - 3/8")
+        Rec8 = Rectangle(3, 3)
+        printed_stream = StringIO()
+        sys.stdout = printed_stream
+        Rec8.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(printed_stream.getvalue(), "###\n###\n###\n")
+        Rec9 = Rectangle(3, 3, 1, 1)
+        printed_stream2 = StringIO()
+        sys.stdout = printed_stream2
+        Rec9.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(printed_stream2.getvalue(), "\n ###\n ###\n ###\n")
 
-    def test_to_dictionary(self):
-        """test_to_dictionary test method output"""
+    def test_str_method(self):
+        """test_str_method to test str output"""
         Base._Base__nb_objects = 0
-        R = Rectangle(2, 3, 2, 2, 1)
-        out_expect = {'x': 2, 'y': 2, 'width': 2, 'height': 3, 'id': 1}
-        self.assertEqual(R.to_dictionary(), out_expect)
+        Rec12 = Rectangle(2, 6)
+        self.assertEqual(Rec12.__str__(), "[Rectangle] (1) 0/0 - 2/6")
+        Rec13 = Rectangle(2, 3, 3, 3, 12)
+        self.assertEqual(Rec13.__str__(), "[Rectangle] (12) 3/3 - 2/3")
