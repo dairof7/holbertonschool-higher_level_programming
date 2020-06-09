@@ -297,16 +297,3 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file(None)
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), "[]")
-
-    def test_18(self):
-        """Test - save_to_file []"""
-        Square.save_to_file([])
-        with open("Square.json", "r") as file:
-            self.assertEqual(file.read(), '[]')
-
-    def test_19(self):
-        """Test compare instances"""
-        s1 = Square(1, 2)
-        self.assertIsInstance(s1, Base)
-        self.assertIsInstance(s1, Square)
-        self.assertIsInstance(s1, Rectangle)
