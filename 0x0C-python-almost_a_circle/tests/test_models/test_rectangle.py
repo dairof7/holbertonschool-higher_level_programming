@@ -416,10 +416,8 @@ class TestRectangle(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
 
-    def test_display_method(self):
-        """test_display_method method to test output
-        of area method for rectangle instances"""
-        Base._Base__nb_objects = 0
+    def test_19(self):
+        """test - display method"""
         Rec8 = Rectangle(3, 3)
         printed_stream = StringIO()
         sys.stdout = printed_stream
