@@ -7,10 +7,10 @@ import contextlib
 import io
 import unittest
 import sys
+import os
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
-import os
 
 
 class TestRectangle(unittest.TestCase):
@@ -423,13 +423,6 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
-
-    def test_19(self):
-        """Test compare instances"""
-        r1 = Rectangle(1, 2)
-        self.assertIsInstance(r1, Base)
-        self.assertIsInstance(r1, Rectangle)
-        self.assertNotIsInstance(r1, Square)
 
     def test_20(self):
         """Test - display a Rectangle"""
