@@ -192,43 +192,6 @@ class TestSquare(unittest.TestCase):
         s1.update(hi=3)
         self.assertEqual(hasattr(s1, 'hi'), False)
 
-    def test_10(self):
-        """Test mod atribute by assignment"""
-        s1 = Square(12)
-        self.assertEqual(s1.size, 12)
-        s1.size = 25
-        self.assertEqual(s1.size, 25)
-        with self.assertRaises(TypeError) as err:
-            s1.size = "asdasd"
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.size = [44, 56]
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.size = True
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.size = {"aasd": 5}
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.size = {1, 2}
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.size = (5,)
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-
     def test_11(self):
         """Test 16 to_dictionary method"""
         s1 = Square(4)
