@@ -2,7 +2,7 @@
 """
 Unittests - Square class
 """
-
+import pep8
 import io
 import unittest
 import sys
