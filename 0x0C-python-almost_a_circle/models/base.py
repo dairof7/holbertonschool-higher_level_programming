@@ -85,27 +85,34 @@ class Base:
         """
         save to file CSV
         """
-        lists = []
-        if len(list_objs) is not 0:
+        str = ""
+        filename = cls.__name__
+        if list_objs is None:
+            res = []
+        else:
+            list_dict = []
             for i in list_objs:
-                lists.append(i.to_dictionary())
-        dicts = cls.to_json_string(lists)
+                list_dict.append(i.to_dictionary())
 
-        with open(cls.__name__ + ".csv", "w+") as my_file:
-            my_file.write(dicts)
+            res = list_dict
+
+        with open(filename + ".csv", 'w', encoding='utf-8') as f:
+            f.write(cls.to_json_string(res))
 
     @classmethod
     def load_from_file_csv(cls):
         """
         returns a list of instances
         """
-        try:
-            with open(cls.__name__ + ".csv", "r") as my_file:
-                read = my_file.read()
-                lists = Base.from_json_string(read)
-                create = []
-                for i in lists:
-                    create.append(cls.create(**i))
-                return create
-        except IOError:
+        filename = cls.__name__
+        filename += ".csv"
+        listdict = []
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as f:
+                filedata = f.read()
+                fromjson = cls.from_json_string(filedata)
+            for dictionary in fromjson:
+                listdict.append(cls.create(**dictionary))
+            return listdict
+        else:
             return []
