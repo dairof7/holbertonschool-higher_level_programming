@@ -23,19 +23,18 @@ class Base:
         """from_json_string Class
         writes an Object to a text file, using a JSON representation"""
         str = ""
-
+        filename = cls.__name__
         if list_objs is None:
             res = []
         else:
-            filename = cls.__name__
             list_dict = []
             for i in list_objs:
                 list_dict.append(i.to_dictionary())
 
-            res = cls.to_json_string(list_dict)
+            res = list_dict
 
         with open(filename + ".json", 'w', encoding='utf-8') as f:
-            f.write(res)
+            f.write(cls.to_json_string(res))
     @staticmethod
     def from_json_string(json_string):
         if json_string is None or json_string is "":
