@@ -416,30 +416,6 @@ class TestRectangle(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
 
-    def test_20(self):
-        """Test - display a Rectangle"""
-        r = Rectangle(3, 5)
-        f = io.StringIO()
-        with contextlib.redirect_stdout(f):
-            r.display()
-        s = f.getvalue()
-        f6 = "###\n###\n###\n###\n###\n"
-        self.assertEqual(s, f6)
-        r = Rectangle(3, 4)
-        f = io.StringIO()
-        with contextlib.redirect_stdout(f):
-            r.display()
-        s = f.getvalue()
-        t = "###\n###\n###\n###\n"
-        self.assertEqual(s, t)
-        r = Rectangle(1, 1)
-        f = io.StringIO()
-        with contextlib.redirect_stdout(f):
-            r.display()
-        s = f.getvalue()
-        o = "#\n"
-        self.assertEqual(s, o)
-
     def test_display_method(self):
         """test_display_method method to test output
         of area method for rectangle instances"""
