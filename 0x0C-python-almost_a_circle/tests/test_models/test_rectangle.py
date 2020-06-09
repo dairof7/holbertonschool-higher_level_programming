@@ -439,46 +439,36 @@ class TestRectangle(unittest.TestCase):
         o = "#\n"
         self.assertEqual(s, o)
 
-
-class TestRaiseExceptions(unittest.TestCase):
-    """TestRaiseExceptions test exceptions for rectangle subclass"""
-
-    def test_not_int_input(self):
-        """test_not_int_input method to test not int input
-        for width, height, x, and y attributes"""
+    def test_update_method(self):
+        """test_update_method to test update instance method"""
         Base._Base__nb_objects = 0
-        # width argument not int
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
-            Rec14 = Rectangle("width", 2, 3, 4)
-        # height argument not int
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
-            Rec15 = Rectangle(3, "Height", 3, 4)
-        # x argument not int
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
-            Rec16 = Rectangle(6, 2, "x", 4)
-        # y argument not int
-        with self.assertRaisesRegex(TypeError, "y must be an integer"):
-            Rec17 = Rectangle(8, 2, 3, "y")
+        Rec_up = Rectangle(3, 2, 4, 5)
+        # testing *args
+        Rec_up.update(3)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 3/2")
+        Rec_up.update(3, 4)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 4/2")
+        Rec_up.update(3, 4, 5)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 4/5 - 4/5")
+        Rec_up.update(3, 4, 5, 6)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 6/5 - 4/5")
+        Rec_up.update(3, 4, 5, 6, 7)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (3) 6/7 - 4/5")
+        # testing **kwargs
+        Rec_up.update(id=12)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 4/5")
+        Rec_up.update(id=12, width=3)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 3/5")
+        Rec_up.update(id=12, width=3, height=8)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 6/7 - 3/8")
+        Rec_up.update(id=12, width=3, height=8, x=2)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 2/7 - 3/8")
+        Rec_up.update(id=12, width=3, height=8, x=2, y=9)
+        self.assertEqual(Rec_up.__str__(), "[Rectangle] (12) 2/9 - 3/8")
 
-    def test_input_under_or_equal_0(self):
-        """test_input_under_or_equal_0 method that test setter
-        validation of width, height, x and y attributes"""
+    def test_to_dictionary(self):
+        """test_to_dictionary test method output"""
         Base._Base__nb_objects = 0
-        # width argument < 0
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            Rec18 = Rectangle(-2, 2, 3, 4)
-        # width argument == 0
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            Rec19 = Rectangle(0, 7, 3, 4)
-        # height argument < 0
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
-            Rec20 = Rectangle(6, -3, 3, 4)
-        # height argument == 0
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
-            Rec21 = Rectangle(8, 0, 3, 4)
-        # x argument < 0
-        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
-            Rec22 = Rectangle(6, 3, -3, 4)
-        # y argument < 0
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
-            Rec23 = Rectangle(6, 3, 3, -1)
+        R = Rectangle(2, 3, 2, 2, 1)
+        out_expect = {'x': 2, 'y': 2, 'width': 2, 'height': 3, 'id': 1}
+        self.assertEqual(R.to_dictionary(), out_expect)
