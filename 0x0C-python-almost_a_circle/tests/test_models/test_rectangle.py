@@ -456,11 +456,3 @@ class TestRectangle(unittest.TestCase):
         Rec9.display()
         sys.stdout = sys.__stdout__
         self.assertEqual(printed_stream2.getvalue(), "\n ###\n ###\n ###\n")
-
-    def test_str_method(self):
-        """test_str_method to test str output"""
-        Base._Base__nb_objects = 0
-        Rec12 = Rectangle(2, 6)
-        self.assertEqual(Rec12.__str__(), "[Rectangle] (1) 0/0 - 2/6")
-        Rec13 = Rectangle(2, 3, 3, 3, 12)
-        self.assertEqual(Rec13.__str__(), "[Rectangle] (12) 3/3 - 2/3")
