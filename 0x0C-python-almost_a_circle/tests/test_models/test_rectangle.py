@@ -8,6 +8,7 @@ import io
 import unittest
 import sys
 import os
+from io import StringIO
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
