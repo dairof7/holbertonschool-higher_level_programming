@@ -1,11 +1,19 @@
 #!/usr/bin/python3
+
+"""Module for Base Class"""
+
+
 import json
 import os
 import csv
 
+
 class Base:
+    """Base Class"""
     __nb_objects = 0
+
     def __init__(self, id=None):
+        """constructor of the class"""
         if id is not None:
             self.id = id
         else:
@@ -14,6 +22,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """converto to json string"""
         if list_dictionaries is None or list_dictionaries is {}:
             return "[]"
         return json.dumps(list_dictionaries)
@@ -35,8 +44,10 @@ class Base:
 
         with open(filename + ".json", 'w', encoding='utf-8') as f:
             f.write(cls.to_json_string(res))
+
     @staticmethod
     def from_json_string(json_string):
+        """convert from json string"""
         if json_string is None or json_string is "":
             data = []
         else:
@@ -45,6 +56,7 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
+        """create a copy of instance"""
         if cls.__name__ == "Rectangle":
             new = cls(1, 1)
         else:
@@ -54,6 +66,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
+        """load json file"""
         filename = cls.__name__
         filename += ".json"
         listdict = []
@@ -69,11 +82,13 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
+        """save a cvs file"""
         filename = cls.__name__
         filename += ".csv"
 
     @classmethod
     def load_from_file_csv(cls):
+        """load a cvs file"""
         filename = cls.__name__
         filename += ".csv"
         if os.path.exists(filename):

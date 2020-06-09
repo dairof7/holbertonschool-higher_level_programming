@@ -11,13 +11,15 @@ from models.square import Square
 from models.rectangle import Rectangle
 import os
 
+
 class TestSquare(unittest.TestCase):
-
-
+    """Test square"""
     def setUp(self):
+        """steup of unittes"""
         Base._Base__nb_objects = 0
 
     def tearDown(self):
+        """deleting files if exist"""
         if os.path.exists("Base.json"):
             os.remove("Base.json")
         if os.path.exists("Rectangle.json"):
@@ -64,7 +66,7 @@ class TestSquare(unittest.TestCase):
             "width must be an integer",
             str(err.exception))
         with self.assertRaises(TypeError) as err:
-            s1 = Square([2,3])
+            s1 = Square([2, 3])
         self.assertEqual(
             "width must be an integer",
             str(err.exception))
@@ -130,35 +132,35 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(ValueError) as err:
             s1 = Square(0, 0, 0, 2)
         self.assertEqual(
-        "width must be > 0",
-        str(err.exception))
+            "width must be > 0",
+            str(err.exception))
         self.assertEqual(s1.x, 0)
 
     def test_05(self):
         """Test - Areas"""
-        s1=Square(2)
+        s1 = Square(2)
         self.assertEqual(s1.area(), 4)
-        s1=Square(3,3)
+        s1 = Square(3, 3)
         self.assertEqual(s1.area(), 9)
-        s1=Square(4,3,5)
+        s1 = Square(4, 3, 5)
         self.assertEqual(s1.area(), 16)
-        s1=Square(5,3,6,7)
+        s1 = Square(5, 3, 6, 7)
         self.assertEqual(s1.area(), 25)
 
     def test_06(self):
         """Test - str"""
-        s1=Square(2)
+        s1 = Square(2)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 2")
-        s1=Square(3,3)
+        s1 = Square(3, 3)
         self.assertEqual(s1.__str__(), "[Square] (2) 3/0 - 3")
-        s1=Square(4,3,5)
+        s1 = Square(4, 3, 5)
         self.assertEqual(s1.__str__(), "[Square] (3) 3/5 - 4")
-        s1=Square(5,3,6,7)
+        s1 = Square(5, 3, 6, 7)
         self.assertEqual(s1.__str__(), "[Square] (7) 3/6 - 5")
 
     def test_07(self):
         """Test - Update"""
-        s1=Square(2)
+        s1 = Square(2)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 2")
         s1.update(3)
         self.assertEqual(s1.__str__(), "[Square] (3) 0/0 - 2")
@@ -171,7 +173,7 @@ class TestSquare(unittest.TestCase):
 
     def test_08(self):
         """Test - Update with names"""
-        s1=Square(2)
+        s1 = Square(2)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 2")
         s1.update(id=3)
         self.assertEqual(s1.__str__(), "[Square] (3) 0/0 - 2")
@@ -184,10 +186,9 @@ class TestSquare(unittest.TestCase):
         s1.update(height=3)
         self.assertEqual(s1.__str__(), "[Square] (3) 6/7 - 4")
 
-
     def test_09(self):
         """Test - unknowm attribute"""
-        s1=Square(2)
+        s1 = Square(2)
         s1.update(hi=3)
         self.assertEqual(hasattr(s1, 'hi'), False)
 
@@ -309,4 +310,3 @@ class TestSquare(unittest.TestCase):
         self.assertIsInstance(s1, Base)
         self.assertIsInstance(s1, Square)
         self.assertIsInstance(s1, Rectangle)
-

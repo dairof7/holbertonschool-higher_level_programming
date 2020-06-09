@@ -1,10 +1,12 @@
+#!/usr/bin/python3
 
+"""Module for Rectangle Class"""
 
 from models.base import Base
 
 
 class Rectangle(Base):
-
+    """Rectangle Class"""
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
         self.height = height
@@ -14,10 +16,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        """Getter of width"""
         return self.__width
 
     @width.setter
     def width(self, width):
+        """Setter of width"""
         if type(width) is not int:
             raise TypeError("width must be an integer")
         if width <= 0:
@@ -26,10 +30,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        """Getter of height"""
         return self.__height
 
     @height.setter
     def height(self, height):
+        """Setter of height"""
         if type(height) is not int:
             raise TypeError("height must be an integer")
         if height <= 0:
@@ -38,10 +44,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        """Getter of x"""
         return self.__x
 
     @x.setter
     def x(self, x):
+        """Setter of x"""
         if type(x) is not int:
             raise TypeError("x must be an integer")
         if x < 0:
@@ -50,10 +58,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        """Getter of y"""
         return self.__y
 
     @y.setter
     def y(self, y):
+        """Setter of y"""
         if type(y) is not int:
             raise TypeError("y must be an integer")
         if y < 0:
@@ -61,6 +71,7 @@ class Rectangle(Base):
         self.__y = y
 
     def area(self):
+        """Calculate area"""
         return self.__width * self.__height
 
     def display(self):
@@ -78,11 +89,12 @@ class Rectangle(Base):
                 print("")
 
     def __str__(self):
+        """return a string"""
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - \
 {self.__width}/{self.__height}"
 
-
     def update(self, *args, **kwargs):
+        """update attributes"""
         if args is not () and args is not None:
             listname = ["id", "width", "height", "x", "y"]
             for i, value in enumerate(args):

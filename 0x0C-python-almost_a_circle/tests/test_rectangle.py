@@ -3,6 +3,7 @@
 Unittests - Rectangle class
 """
 
+import contextlib
 import io
 import unittest
 import sys
@@ -11,13 +12,16 @@ from models.rectangle import Rectangle
 from models.square import Square
 import os
 
-class TestRectangle(unittest.TestCase):
 
+class TestRectangle(unittest.TestCase):
+    """Rectangle test"""
 
     def setUp(self):
+        """setup of unittes"""
         Base._Base__nb_objects = 0
 
     def tearDown(self):
+        """delete existing files"""
         if os.path.exists("Base.json"):
             os.remove("Base.json")
         if os.path.exists("Rectangle.json"):
@@ -75,7 +79,7 @@ class TestRectangle(unittest.TestCase):
             "width must be an integer",
             str(err.exception))
         with self.assertRaises(TypeError) as err:
-            s1 = Rectangle([2,3], 5)
+            s1 = Rectangle([2, 3], 5)
         self.assertEqual(
             "width must be an integer",
             str(err.exception))
@@ -95,7 +99,7 @@ class TestRectangle(unittest.TestCase):
             "height must be an integer",
             str(err.exception))
         with self.assertRaises(TypeError) as err:
-            s1 = Rectangle(2, [2,3])
+            s1 = Rectangle(2, [2, 3])
         self.assertEqual(
             "height must be an integer",
             str(err.exception))
@@ -137,7 +141,6 @@ class TestRectangle(unittest.TestCase):
             "__init__() missing 2 required positional arguments:" +
             " 'width' and 'height'",
             str(err.exception))
-
 
     def test_03(self):
         """Test one argument"""
@@ -181,39 +184,39 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as err:
             s1 = Rectangle(0, 2, 3, 2)
         self.assertEqual(
-        "width must be > 0",
-        str(err.exception))
+            "width must be > 0",
+            str(err.exception))
         with self.assertRaises(ValueError) as err:
             s1 = Rectangle(20, 0, 3, 2)
         self.assertEqual(
-        "height must be > 0",
-        str(err.exception))
+            "height must be > 0",
+            str(err.exception))
 
     def test_05(self):
         """Test - Areas"""
-        s1=Rectangle(2, 6)
+        s1 = Rectangle(2, 6)
         self.assertEqual(s1.area(), 12)
-        s1=Rectangle(3, 3)
+        s1 = Rectangle(3, 3)
         self.assertEqual(s1.area(), 9)
-        s1=Rectangle(4, 3, 5)
+        s1 = Rectangle(4, 3, 5)
         self.assertEqual(s1.area(), 12)
-        s1=Rectangle(5, 3, 6, 7)
+        s1 = Rectangle(5, 3, 6, 7)
         self.assertEqual(s1.area(), 15)
 
     def test_06(self):
         """Test - str"""
-        s1=Rectangle(2, 3)
+        s1 = Rectangle(2, 3)
         self.assertEqual(s1.__str__(), "[Rectangle] (1) 0/0 - 2/3")
-        s1=Rectangle(3, 4, 5)
+        s1 = Rectangle(3, 4, 5)
         self.assertEqual(s1.__str__(), "[Rectangle] (2) 5/0 - 3/4")
-        s1=Rectangle(4, 3, 5, 6)
+        s1 = Rectangle(4, 3, 5, 6)
         self.assertEqual(s1.__str__(), "[Rectangle] (3) 5/6 - 4/3")
-        s1=Rectangle(5, 3, 6, 7, 8)
+        s1 = Rectangle(5, 3, 6, 7, 8)
         self.assertEqual(s1.__str__(), "[Rectangle] (8) 6/7 - 5/3")
 
     def test_07(self):
         """Test - Update"""
-        s1=Rectangle(2, 2)
+        s1 = Rectangle(2, 2)
         self.assertEqual(s1.__str__(), "[Rectangle] (1) 0/0 - 2/2")
         s1.update(3, 3)
         self.assertEqual(s1.__str__(), "[Rectangle] (3) 0/0 - 3/2")
@@ -226,7 +229,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_08(self):
         """Test - Update with names"""
-        s1=Rectangle(2,3)
+        s1 = Rectangle(2, 3)
         self.assertEqual(s1.__str__(), "[Rectangle] (1) 0/0 - 2/3")
         s1.update(id=3)
         self.assertEqual(s1.__str__(), "[Rectangle] (3) 0/0 - 2/3")
@@ -241,19 +244,18 @@ class TestRectangle(unittest.TestCase):
 
     def test_09(self):
         """Test - unknowm attribute"""
-        s1=Rectangle(2, 5)
+        s1 = Rectangle(2, 5)
         s1.update(hi=3)
         self.assertEqual(hasattr(s1, 'hi'), False)
 
     def test_10(self):
         """Test mod atribute by assignment"""
-        s1 = Rectangle(12,4)
+        s1 = Rectangle(12, 4)
         self.assertEqual(s1.width, 12)
         s1.width = 25
         self.assertEqual(s1.width, 25)
         s1.height = 5
         self.assertEqual(s1.height, 5)
-        
         with self.assertRaises(TypeError) as err:
             s1.width = "asdasd"
         self.assertEqual(
@@ -315,7 +317,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(
             "height must be an integer",
             str(err.exception))
-        
         with self.assertRaises(TypeError) as err:
             s1.x = "asdasd"
         self.assertEqual(
@@ -372,8 +373,8 @@ class TestRectangle(unittest.TestCase):
         dictionary = s1.to_dictionary()
         json_d = Base.to_json_string([dictionary])
         self.assertEqual(type(json_d), str)
-        self.assertDictEqual(dictionary,
-            {'id': 1, 'x': 2, 'y': 0, 'width': 2, 'height': 6})
+        self.assertDictEqual(
+            dictionary, {'id': 1, 'x': 2, 'y': 0, 'width': 2, 'height': 6})
 
     def test_13(self):
         """Test - save_to_file method"""
@@ -429,3 +430,27 @@ class TestRectangle(unittest.TestCase):
         self.assertIsInstance(r1, Base)
         self.assertIsInstance(r1, Rectangle)
         self.assertNotIsInstance(r1, Square)
+
+    def test_20(self):
+        """Test - display a Rectangle"""
+        r = Rectangle(3, 5)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            r.display()
+        s = f.getvalue()
+        f6 = "###\n###\n###\n###\n###\n"
+        self.assertEqual(s, f6)
+        r = Rectangle(3, 4)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            r.display()
+        s = f.getvalue()
+        t = "###\n###\n###\n###\n"
+        self.assertEqual(s, t)
+        r = Rectangle(1, 1)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            r.display()
+        s = f.getvalue()
+        o = "#\n"
+        self.assertEqual(s, o)
