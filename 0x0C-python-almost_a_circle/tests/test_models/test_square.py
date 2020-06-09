@@ -266,19 +266,6 @@ class TestSquare(unittest.TestCase):
         with open("Square.json", "r") as file:
             self.assertEqual(len(file.read()), len(res))
 
-    def test_14(self):
-        """Test - save_to_file - load_from_file method"""
-        s1 = Square(2, 6, 2)
-        Square.save_to_file([s1])
-        datafromfile = Square.load_from_file()
-        res = '[{"x": 6, "y": 2, "size": 2, "id": 1}]'
-        with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), len(res))
-        string = ""
-        for data in datafromfile:
-            string += str(data)
-        self.assertEqual(string, "[Square] (1) 6/2 - 2")
-
     def test_15(self):
         """Test 20 load void"""
         sl = Square.load_from_file()
