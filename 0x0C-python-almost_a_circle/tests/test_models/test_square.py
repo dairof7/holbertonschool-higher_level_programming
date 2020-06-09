@@ -279,21 +279,15 @@ class TestSquare(unittest.TestCase):
             string += str(data)
         self.assertEqual(string, "[Square] (1) 6/2 - 2")
 
-    def test_15(self):
-        """Test 20 load void"""
-        sl = Square.load_from_file()
-        self.assertEqual(sl, [])
-
-    def test_16(self):
-        """Test """
-        s1 = Square(1, 25, 34, 7)
-        s1_dict = s1.to_dictionary()
-        s2 = Square.create(**s1_dict)
-        self.assertEqual((s1 == s2), False)
-        self.assertEqual((s1 is s2), False)
-
-    def test_17(self):
-        """Test - save_to_file None"""
-        Square.save_to_file(None)
+    def test_18(self):
+        """Test - save_to_file []"""
+        Square.save_to_file([])
         with open("Square.json", "r") as file:
-            self.assertEqual(file.read(), "[]")
+            self.assertEqual(file.read(), '[]')
+
+    def test_19(self):
+        """Test compare instances"""
+        s1 = Square(1, 2)
+        self.assertIsInstance(s1, Base)
+        self.assertIsInstance(s1, Square)
+        self.assertIsInstance(s1, Rectangle)
