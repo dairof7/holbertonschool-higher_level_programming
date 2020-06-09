@@ -8,6 +8,7 @@ from models.base import Base
 class Rectangle(Base):
     """Rectangle Class"""
     def __init__(self, width, height, x=0, y=0, id=None):
+        """constructor Class"""
         self.width = width
         self.height = height
         self.x = x
