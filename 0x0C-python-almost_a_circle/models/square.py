@@ -14,8 +14,17 @@ class Square(Rectangle):
         self.size = size
 
     def __str__(self):
-        """return s string"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+        """
+        String magic
+        Returns:
+            string
+        """
+        id = str(self.id)
+        x = str(self.x)
+        y = str(self.y)
+        size = str(self.width)
+        string = "[Square] (" + id + ") " + x + "/" + y + " - " + size
+        return string
 
     @property
     def size(self):

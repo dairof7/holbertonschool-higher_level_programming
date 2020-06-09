@@ -91,9 +91,7 @@ class Rectangle(Base):
                 print("")
 
     def __str__(self):
-        """
-        String message
-        """
+        """String message"""
         id = str(self.id)
         width = str(self.__width)
         height = str(self.__height)
