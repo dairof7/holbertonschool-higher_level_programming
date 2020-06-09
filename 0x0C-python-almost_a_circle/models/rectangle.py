@@ -78,7 +78,7 @@ class Rectangle(Base):
                 print("")
 
     def __str__(self):
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} -\
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - \
 {self.__width}/{self.__height}"
 
 
@@ -95,7 +95,6 @@ class Rectangle(Base):
     def to_dictionary(self):
         """Dictionary"""
         new_dictionary = {}
-        print(self.__dict__)
         for key, value in self.__dict__.items():
             new_dictionary[key.split("__")[-1]] = value
         return new_dictionary
