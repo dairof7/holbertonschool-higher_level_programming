@@ -3,7 +3,7 @@
 """
 Unittest for Base class
 """
-import pep8
+
 import unittest
 import os
 import json
@@ -41,20 +41,3 @@ class TestBasepep8(unittest.TestCase):
         test_base = "tests/test_models/test_base.py"
         result = style.check_files([base, test_base])
         self.assertEqual(result.total_errors, 0)
-
-
-class TestDocs(unittest.TestCase):
-    """test docstrings for base and test_base files"""
-
-    def test_module(self):
-        """check module docstrings"""
-        self.assertTrue(len(Base.__doc__) > 0)
-
-    def test_class(self):
-        """check class docstrings"""
-        self.assertTrue(len(Base.__doc__) > 0)
-
-    def test_method(self):
-        """check method docstrings"""
-        for func in dir(Base):
-            self.assertTrue(len(func.__doc__) > 0)
