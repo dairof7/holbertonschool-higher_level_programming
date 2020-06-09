@@ -133,15 +133,6 @@ class TestRectangle(unittest.TestCase):
         s2 = Rectangle(2, 3, 4, 6, False)
         self.assertEqual(s2.id, False)
 
-    def test_02(self):
-        """Test none argument"""
-        with self.assertRaises(TypeError) as err:
-            s = Rectangle()
-        self.assertEqual(
-            "__init__() missing 2 required positional arguments:" +
-            " 'width' and 'height'",
-            str(err.exception))
-
     def test_03(self):
         """Test one argument"""
         with self.assertRaises(TypeError) as err:
@@ -247,106 +238,6 @@ class TestRectangle(unittest.TestCase):
         s1 = Rectangle(2, 5)
         s1.update(hi=3)
         self.assertEqual(hasattr(s1, 'hi'), False)
-
-    def test_10(self):
-        """Test mod atribute by assignment"""
-        s1 = Rectangle(12, 4)
-        self.assertEqual(s1.width, 12)
-        s1.width = 25
-        self.assertEqual(s1.width, 25)
-        s1.height = 5
-        self.assertEqual(s1.height, 5)
-        with self.assertRaises(TypeError) as err:
-            s1.width = "asdasd"
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.width = [44, 56]
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.width = True
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.width = {"aasd": 5}
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.width = {1, 2}
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.width = (5,)
-        self.assertEqual(
-            "width must be an integer",
-            str(err.exception))
-
-        with self.assertRaises(TypeError) as err:
-            s1.height = "asdasd"
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.height = [44, 56]
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.height = True
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.height = {"aasd": 5}
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.height = {1, 2}
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.height = (5,)
-        self.assertEqual(
-            "height must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.x = "asdasd"
-        self.assertEqual(
-            "x must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.x = [44, 56]
-        self.assertEqual(
-            "x must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.y = True
-        self.assertEqual(
-            "y must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.y = {"aasd": 5}
-        self.assertEqual(
-            "y must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.x = {1, 2}
-        self.assertEqual(
-            "x must be an integer",
-            str(err.exception))
-        with self.assertRaises(TypeError) as err:
-            s1.y = (5,)
-        self.assertEqual(
-            "y must be an integer",
-            str(err.exception))
 
     def test_11(self):
         """Test 16 to_dictionary method"""
