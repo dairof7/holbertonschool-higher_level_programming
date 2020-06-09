@@ -3,7 +3,7 @@
 """
 Unittest for Base class
 """
-import pep8
+
 import unittest
 import os
 import json
@@ -29,7 +29,3 @@ class Test_Base(unittest.TestCase):
         self.assertEqual(b1.id, -7)
         self.assertEqual(b2.id, 1)
         self.assertEqual(b3.id, 2)
-
-
-if __name__ == '__main__':
-    unittest.main()
