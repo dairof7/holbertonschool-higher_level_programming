@@ -19,7 +19,9 @@ if __name__ == '__main__':
     s = sessionmaker(bind=engine)()
 
     _query = s.query(State).filter(State.name == STATE).first()
-
-    print(_query.id)
+    if _query:
+        print(_query.id)
+    else
+        print('Not found')
 
     s.close()
