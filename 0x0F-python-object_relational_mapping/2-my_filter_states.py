@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     cur = db.cursor()
 
-    cur.execute("SELECT * FROM states WHERE LIKE BINARY name='{:}'"
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '{:}'"
                 "ORDER BY id;".format(WORD))
     rows = cur.fetchall()
     for row in rows:
