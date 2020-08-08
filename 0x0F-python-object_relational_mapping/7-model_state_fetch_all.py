@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# print all State from the database
+""" print all State from the database"""
 
 import sys
 from model_state import Base, State

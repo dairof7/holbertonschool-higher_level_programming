@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# print all states start by N from the database hbtn_0e_0_usa
+""" print all states start by N from the database hbtn_0e_0_usa"""
 
 import MySQLdb
 import sys
