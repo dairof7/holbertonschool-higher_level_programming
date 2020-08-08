@@ -11,7 +11,8 @@ if __name__ == '__main__':
     MY_PASS = sys.argv[2]
     MY_DB = sys.argv[3]
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}\
+    '.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
 
     s = sessionmaker(bind=engine)()
 
