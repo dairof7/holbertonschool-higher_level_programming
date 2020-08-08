@@ -21,7 +21,7 @@ if __name__ == '__main__':
     _query = s.query(State).filter(State.name == STATE).first()
     if _query:
         print(_query.id)
-    else
+    else:
         print('Not found')
 
     s.close()
