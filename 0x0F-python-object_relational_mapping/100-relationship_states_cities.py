@@ -15,8 +15,6 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     s = sessionmaker(bind=engine)()
 
-    _query = s.query(State, City).filter(State.id == City.state_id).all()
-
     new_State = State(name="California")
     new_City = City(name="San Francisco", state=new_State)
     s.add(new_City)
