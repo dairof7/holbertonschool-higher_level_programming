@@ -4,7 +4,7 @@
 
 def find_peak(list_of_integers):
     "find peak in a list"
-    if len(list_of_integers) != 0:
+    if list_of_integers:
         max_int = max(list_of_integers)
     else:
         max_int = None
