@@ -10,9 +10,7 @@ from sys import argv
 
 if __name__ == '__main__':
     data = parse.urlencode({'email': argv[2]})
-    print(data)
     data = data.encode('ascii')
-    print(data)
     URL = argv[1]
     with request.urlopen(URL, data) as response:
         html = response.read()
