@@ -6,9 +6,11 @@ and displays the body of the response (decoded in utf-8)
 """
 
 import requests
+from sys import argv
+
 
 if __name__ == '__main__':
-    URL = 'https://intranet.hbtn.io/status'
+    URL = argv[1]
     req = requests.get(URL)
     error_code = req.status_code
     if error_code >= 400:
