@@ -7,5 +7,5 @@ if (Number.isInteger(size)) {
     console.log(str.repeat(size));
   }
 } else {
-  console.log('Missing number of occurrences');
+  console.log('Missing size');
 }
