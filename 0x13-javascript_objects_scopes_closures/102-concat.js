@@ -1,27 +1,12 @@
 #!/usr/bin/node
+const { promises: fs } = require('fs');
 
-var fs = require('fs');
-let content = '';
-
-fs.readFile(process.argv[2], function (err, data) {
-  if (err) {
-    return console.error(err);
-  }
-  add(data.toString() + '\n');
-});
-
-fs.readFile(process.argv[3], function (err, data) {
-  if (err) {
-    return console.error(err);
-  }
-  add(data.toString());
-});
-
-function add (data) {
-  content += data;
-  fs.writeFile(process.argv[4], content, function (err) {
-    if (err) {
-      return console.error(err);
-    }
-  });
+async function f1 (path) {
+  return fs.readFile(path, 'utf-8');
 }
+
+(async () => {
+  const content = await f1(process.argv[2]);
+  const content2 = await f1(process.argv[3]);
+  fs.writeFile(process.argv[4], content + '\n' + content2);
+})();
