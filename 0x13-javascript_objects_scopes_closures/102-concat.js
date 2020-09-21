@@ -1,12 +1,23 @@
 #!/usr/bin/node
-const { promises: fs } = require('fs');
-
-async function f1 (path) {
-  return fs.readFile(path, 'utf-8');
+const fs = require('fs');
+let data1 = '';
+let data2 = '';
+try {
+  data1 = fs.readFileSync(process.argv[2], 'utf8');
+} catch (err) {
+  console.error(err);
 }
 
-(async () => {
-  const content = await f1(process.argv[2]);
-  const content2 = await f1(process.argv[3]);
-  fs.writeFile(process.argv[4], content + '\n' + content2);
-})();
+try {
+  data2 = fs.readFileSync(process.argv[3], 'utf8');
+} catch (err) {
+  console.error(err);
+}
+
+console.log(data1 + '\n' + data2);
+
+fs.writeFile(process.argv[4], data1 + '\n' + data2, function (err) {
+  if (err) {
+    return console.error(err);
+  }
+});
