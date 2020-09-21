@@ -16,7 +16,7 @@ try {
 
 console.log(data1 + '\n' + data2);
 
-fs.writeFile(process.argv[4], data1 + '\n' + data2, function (err) {
+fs.writeFile(process.argv[4], data1 + data2, function (err) {
   if (err) {
     return console.error(err);
   }
