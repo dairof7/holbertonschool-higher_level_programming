@@ -2,7 +2,7 @@
 // Square class that inhererit from Rectangle
 // charPrint method that print the Square
 
-const Rectangle = require('./4-rectangle');
+const Rectangle = require('./5-rectangle');
 
 module.exports = class Square extends Rectangle {
   charPrint (c) {
