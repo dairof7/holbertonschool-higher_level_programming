@@ -10,8 +10,8 @@ request(url, function (err, res, body) {
   } else {
     let count = 0;
     const data = JSON.parse(body);
-    for (let element of data.results) {
-      for (let char of element.characters) {
+    for (const element of data.results) {
+      for (const char of element.characters) {
         if (char.includes('/18/')) {
           count += 1;
           break;
