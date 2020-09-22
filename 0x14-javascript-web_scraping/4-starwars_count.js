@@ -12,6 +12,7 @@ request(url, function (err, res, body) {
       for (let j = 0; j < data.results[i].characters.length; j++) {
         if (char === data.results[i].characters[j]) {
           count += 1;
+          break;
         }
       }
     }
