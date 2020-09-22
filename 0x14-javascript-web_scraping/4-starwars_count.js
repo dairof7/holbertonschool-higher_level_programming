@@ -1,7 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
 const url = process.argv[2];
-const char = 'https://swapi-api.hbtn.io/api/people/18/';
 let count = 0;
 request(url, function (err, res, body) {
   if (err) {
@@ -10,7 +9,7 @@ request(url, function (err, res, body) {
     const data = JSON.parse(body);
     for (let i = 0; i < data.count; i++) {
       for (let j = 0; j < data.results[i].characters.length; j++) {
-        if (char === data.results[i].characters[j]) {
+        if (data.results[i].characters[j].includes('/18/')) {
           count += 1;
           break;
         }
