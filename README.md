@@ -1,7 +1,7 @@
 # Holbertonschool Higher Level Programming 
 
 ## Introduction 
-This repository contains all the project tasks of Holberton School higher level programing program, through intensive code sessions during foundations program to have solid skills with Javascript and Python.
+This repository contains all the project tasks of Holberton School higher level programing programl.
 
 ## Table of Contents
 * [About](#About)
