@@ -1,7 +1,7 @@
 # Holbertonschool Higher Level Programming 
 
 ## Introduction 
-This repository contains all the project tasks of Holberton School higher level programing programl.
+This repository contains all the project tasks of Holberton School higher level programing program.
 
 ## Table of Contents
 * [About](#About)
